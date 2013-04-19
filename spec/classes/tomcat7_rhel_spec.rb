@@ -7,11 +7,11 @@ describe 'tomcat7_rhel' do
 
   it {
     should contain_package('tomcat7').with({
-      'ensure'  => 'installed'
+      'ensure'  => 'latest'
     })
   }
 
-  it { should contain_package("java-1.7.0-openjdk") }
+  it { should contain_package("java-1.7.0") }
 
-  it { should contain_package("java-1.7.0-openjdk-devel") }
+  it { should contain_package("java-1.7.0") }
 end
