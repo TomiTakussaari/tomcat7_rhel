@@ -10,7 +10,7 @@ class tomcat7_rhel {
   }
 
   package { "tomcat7":
-    ensure => installed,
+    ensure => latest,
     require => [Package['java-1.7.0-openjdk'], Yumrepo['jpackage']]
   }
 }
