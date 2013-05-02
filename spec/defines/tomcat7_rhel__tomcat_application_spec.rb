@@ -198,7 +198,7 @@ describe 'tomcat7_rhel::tomcat_application' do
       :tomcat_user              => 'uzer',
       :tomcat_port              => 8123,
       :jvm_envs                 => '-Di_love_java=true',
-      :smoke_test_path => "/health"
+      :smoke_test_path => "health"
     }}
 
     context 'file run_smoke_test.sh' do
