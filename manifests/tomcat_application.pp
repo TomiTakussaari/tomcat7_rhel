@@ -12,7 +12,7 @@ define tomcat7_rhel::tomcat_application(
   $jmx_registry_port = 10052,
   $jmx_server_port = 10051,
   $smoke_test_path = "/",
-  $context_path = "",
+  $context_name = "",
   $tomcat_version=latest,
   $java_version=latest) {
 
@@ -66,7 +66,7 @@ define tomcat7_rhel::tomcat_application(
     application_dir => $application_dir,
     application_name => $application_name,
     tomcat_port => $tomcat_port,
-    context_path => $context_path
+    context_name => $context_name
     }
   }
 

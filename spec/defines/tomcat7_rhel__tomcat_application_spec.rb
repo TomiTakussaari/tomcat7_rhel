@@ -198,13 +198,33 @@ describe 'tomcat7_rhel::tomcat_application' do
       :tomcat_user              => 'uzer',
       :tomcat_port              => 8123,
       :jvm_envs                 => '-Di_love_java=true',
-      :smoke_test_path => "health"
+      :smoke_test_path => "/health"
     }}
 
     context 'file run_smoke_test.sh' do
       it {
         should contain_file('/opt/my-web-app/bin/run_smoke_test.sh').
           with_content(/.*curl --fail --retry 3 -L.*localhost:8123\/health.*/m)
+      }
+    end
+  end
+
+  describe 'Specifying healthcheck url for smoketest with non-default context name' do
+    let(:title) { 'my-web-app' }
+
+    let(:params) {{
+      :application_root         => '/opt',
+      :tomcat_user              => 'uzer',
+      :tomcat_port              => 8123,
+      :jvm_envs                 => '-Di_love_java=true',
+      :context_name             => 'my_application' ,
+      :smoke_test_path          => '/health'
+    }}
+
+    context 'file run_smoke_test.sh' do
+      it {
+        should contain_file('/opt/my-web-app/bin/run_smoke_test.sh').
+          with_content(/.*curl --fail --retry 3 -L.*localhost:8123\/my_application\/health.*/m)
       }
     end
   end
