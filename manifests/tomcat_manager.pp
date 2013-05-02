@@ -4,7 +4,8 @@ define tomcat7_rhel::tomcat_manager(
                                     $tomcat_user,
                                     $application_dir,
                                     $application_name,
-                                    $tomcat_port) {
+                                    $tomcat_port,
+                                    $context_path) {
   require tomcat7_rhel::tomcat7_manager_package
 
   file { "$application_dir/conf/Catalina/localhost/manager.xml":

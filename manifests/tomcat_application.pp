@@ -11,8 +11,15 @@ define tomcat7_rhel::tomcat_application(
   $server_xml_engine_config = "",
   $jmx_registry_port = 10052,
   $jmx_server_port = 10051,
-  $smoke_test_path = "/") {
-  include tomcat7_rhel
+  $smoke_test_path = "/",
+  $context_path = "",
+  $tomcat_version=latest,
+  $java_version=latest) {
+
+  class { "tomcat7_rhel":
+    tomcat_version => $tomcat_version,
+    java_version => $java_version
+  }
 
   $application_dir = "$application_root/$application_name"
   $tomcat_log = "$application_dir/logs/catalina.out"
@@ -58,7 +65,8 @@ define tomcat7_rhel::tomcat_application(
     tomcat_user => $tomcat_user,
     application_dir => $application_dir,
     application_name => $application_name,
-    tomcat_port => $tomcat_port
+    tomcat_port => $tomcat_port,
+    context_path => $context_path
     }
   }
 
